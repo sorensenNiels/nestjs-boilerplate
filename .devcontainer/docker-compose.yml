@@ -17,5 +17,17 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
 
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    command: ["redis-server"]
+    # No ports or volumes: ephemeral, internal-only for devcontainer use
+
+    mongo:
+      image: mongo:latest
+      restart: unless-stopped
+      command: ["mongod", "--bind_ip_all"]
+      # No ports or volumes: ephemeral, internal-only for devcontainer use
+
 volumes:
   postgres-data:
